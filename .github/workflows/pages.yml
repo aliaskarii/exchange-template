@@ -25,4 +25,4 @@ jobs:
         deploy_key: ${{ secrets.PAGES }}
         external_repository: aliaskarii/exchange-dashboard
         publish_branch: main  # default: gh-pages
-        publish_dir: ./public
+        publish_dir: ./
