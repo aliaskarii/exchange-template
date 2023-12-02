@@ -1,34 +1,18 @@
 name: Build and Deploy
+
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: aliaskarii/exchange-dashboard
-        path: ./deploy 
+    - uses: actions/checkout@v3
 
     - name: Build and Deploy React app to GitHub Pages
       uses: omkartapale/react-deployment-gh-pages@v1.0.0
-
-    - name: Copy Build Artifacts
-      run: cp -r ./build/* ./deploy/
-
-    - name: Configure Git
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git config credential.helper 'cache --timeout=600'  # Cache credentials for 10 minutes
-
-    - name: Commit and Push Changes
-      run: |
-        cd ./deploy
-        git add .
-        git commit -m "Build and deploy React project"
-        git remote add target-repo https://${{ secrets.PAGES }}@github.com:aliaskarii/exchange-dashboard.git
-        git push -u target-repo main
