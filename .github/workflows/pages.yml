@@ -22,5 +22,7 @@ jobs:
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ secrets.PAGES }}@github.com:aliaskarii/exchange-dashboard
-        publish_dir: ./build
+        deploy_key: ${{ secrets.PAGES }}
+        external_repository: aliaskarii/exchange-dashboard
+        publish_branch: main  # default: gh-pages
+        publish_dir: ./public
