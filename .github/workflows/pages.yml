@@ -9,5 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        repository: username/your-other-repository  # Change to the username and repository name of your target repository
+        path: ./deploy  # Change to the directory where you want to clone the deploy repository
+
     - name: Build and Deploy React app to GitHub Pages
       uses: omkartapale/react-deployment-gh-pages@v1.0.0
+
+    - name: Copy Build Artifacts
+      run: cp -r ./build/* ./deploy/
+
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git config credential.helper 'cache --timeout=600'  # Cache credentials for 10 minutes
+
+    - name: Commit and Push Changes
+      run: |
+        cd ./deploy
+        git add .
+        git commit -m "Build and deploy React project"
+        git remote add target-repo https://${{ secrets.PAGES }}@github.com:aliaskarii/exchange-dashboard.git
+        git push -u target-repo main
