@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: username/your-other-repository  # Change to the username and repository name of your target repository
-        path: ./deploy  # Change to the directory where you want to clone the deploy repository
+        repository: aliaskarii/exchange-dashboard
+        path: ./deploy 
 
     - name: Build and Deploy React app to GitHub Pages
       uses: omkartapale/react-deployment-gh-pages@v1.0.0
