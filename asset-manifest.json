@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/exchange-dashboard/static/css/main.30996ad4.css",
+    "main.js": "/exchange-dashboard/static/js/main.d3eebedc.js",
+    "static/js/787.161f65aa.chunk.js": "/exchange-dashboard/static/js/787.161f65aa.chunk.js",
+    "index.html": "/exchange-dashboard/index.html",
+    "main.30996ad4.css.map": "/exchange-dashboard/static/css/main.30996ad4.css.map",
+    "main.d3eebedc.js.map": "/exchange-dashboard/static/js/main.d3eebedc.js.map",
+    "787.161f65aa.chunk.js.map": "/exchange-dashboard/static/js/787.161f65aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30996ad4.css",
+    "static/js/main.d3eebedc.js"
+  ]
+}
