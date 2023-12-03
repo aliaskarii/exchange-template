@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -13,6 +13,52 @@ import { loginAction } from '../../routes'
 
 
 function Login() {
+  const [formData, setFormData] = useState({
+    phone: '',
+    password: '',
+    rememberMe: false,
+  })
+
+  const [errors, setErrors] = useState({
+    phone: '',
+    password: '',
+  })
+
+  const validateForm = () => {
+    let valid = true
+    const newErrors = { phone: '', password: '' }
+
+    if (!formData.phone) {
+      newErrors.phone = 'phone is required'
+      valid = false
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+    if (!formData.password || !passwordRegex.test(formData.password)) {
+      newErrors.password = 'Password must be at least 6 characters with at least one uppercase and one lowercase letter'
+      valid = false
+    }
+
+    setErrors(newErrors)
+    return valid
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (validateForm()) {
+      loginAction(formData.phone)
+      console.log('Login successful')
+    } else {
+      console.log('Login failed')
+    }
+  }
+
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target
+    setFormData({
+      ...formData,
+      [name]: name === 'rememberMe' ? checked : value,
+    })
+  }
   let location = useLocation()
   let params = new URLSearchParams(location.search)
   let from = params.get('from') || '/'
@@ -20,15 +66,6 @@ function Login() {
   let navigation = useNavigation()
   let isLoggingIn = navigation.formData?.get('phone') != null
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    let phone = data.get('phone')
-    let password = data.get('password')
-    loginAction(phone,password)
-    console.log(phone,password)
-  }
   return (
     <Grid container component="main" sx={{ height: '100vh' }} direction='row-reverse'>
       <Grid
@@ -66,7 +103,7 @@ function Login() {
           <Typography component="h6" variant="h6" sx={{ mt: 3 }}>
             Log in to your account to access all feature
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <input type="hidden" name="redirectTo" value={from} />
             <TextField
               margin="normal"
@@ -75,6 +112,10 @@ function Login() {
               id="phone"
               label="Phone Number"
               name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={Boolean(errors.phone)}
+              helperText={errors.phone}
               autoComplete="phone"
             />
             <TextField
@@ -85,6 +126,10 @@ function Login() {
               label="Password"
               type="password"
               id="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={Boolean(errors.password)}
+              helperText={errors.password}
               autoComplete="current-password"
             />
             <Grid container direction="column">

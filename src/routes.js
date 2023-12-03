@@ -62,15 +62,9 @@ export const router = createBrowserRouter([
 
 export async function loginAction(props) {
   let phone = props.phone
-  let password = props.password
-  
-  if (!phone && !password) {
-    return {
-      error: 'You must provide a username to log in',
-    }
-  }
   try {
     await fakeAuthProvider.signin(phone)
+    console.log('log in fake success')
   } catch (error) {
     // handle invalid
     return {
