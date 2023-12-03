@@ -7,7 +7,9 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:import/errors',
     'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -16,12 +18,22 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'import', 'jsx-a11y'],
   rules: {
     'no-console': 'off',
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
+  },
+  settings: {
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx']
+      }
+    },
+    'react': {
+      'version': 'detect'
+    }
   },
 }

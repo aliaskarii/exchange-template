@@ -1,5 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
-import routes from '../routes'
+import { Outlet } from 'react-router-dom'
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -20,7 +19,6 @@ import ListItemText from '@mui/material/ListItemText'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import mainListItems from './listItems'
 import Container from '@mui/material/Container'
-
 
 function Copyright() {
   return (
@@ -82,7 +80,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 )
 
-export function Dashboard() {
+export function DashboardLayout() {
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
     setOpen(!open)
@@ -144,21 +142,10 @@ export function Dashboard() {
         </List>
       </Drawer>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Routes>
-          {routes.map(
-            ({ layout, pages }) =>
-              layout === 'dashboard' &&
-                            pages.map(({ path, element }) => (
-                              <Route exact path={path} element={element} key={element}/>
-                            ))
-          )}
-        </Routes>
+        <Outlet/>
         <Copyright sx={{ pt: 4 }} />
       </Container>
     </Box>
   )
 }
-
-Dashboard.displayName = '/src/layout/dashboard.jsx'
-
-export default Dashboard
+export default DashboardLayout

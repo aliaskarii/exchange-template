@@ -1,16 +1,12 @@
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import Dashboard from './layouts/dashboard'
-import Auth from './layouts/auth'
+import {
+  RouterProvider,
+} from 'react-router-dom'
+import { router } from './routes'
 
-function App() {
+
+export default function App() {
   return (
-    <Routes>
-      <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="/auth/*" element={<Auth />} />
-      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
-    </Routes>
+    <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
   )
 }
-
-export default App

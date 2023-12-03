@@ -8,16 +8,26 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
+import { useLocation, useNavigation } from 'react-router-dom'
+import { loginAction } from '../../routes'
 
 
-function SignIn() {
+function Login() {
+  let location = useLocation()
+  let params = new URLSearchParams(location.search)
+  let from = params.get('from') || '/'
+
+  let navigation = useNavigation()
+  let isLoggingIn = navigation.formData?.get('phone') != null
+
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+    let phone = data.get('phone')
+    let password = data.get('password')
+    loginAction(phone,password)
+    console.log(phone,password)
   }
   return (
     <Grid container component="main" sx={{ height: '100vh' }} direction='row-reverse'>
@@ -27,7 +37,7 @@ function SignIn() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: 'url(../../assets/images/Group360.png)',
+          backgroundImage: 'url(../assets/images/Group360.png)',
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -51,21 +61,21 @@ function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h4" sx={{ mt: 3 }}>
-                        Sign in
+            Sign in
           </Typography>
           <Typography component="h6" variant="h6" sx={{ mt: 3 }}>
-                        Log in to your account to access all feature
+            Log in to your account to access all feature
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <input type="hidden" name="redirectTo" value={from} />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="phone"
               label="Phone Number"
               name="phone"
               autoComplete="phone"
-              autoFocus
             />
             <TextField
               margin="normal"
@@ -80,7 +90,7 @@ function SignIn() {
             <Grid container direction="column">
               <Grid item xs>
                 <Link href="#" variant="body2">
-                                    Forgot password?
+                  Forgot password?
                 </Link>
               </Grid>
               <Grid item>
@@ -94,8 +104,9 @@ function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isLoggingIn}
             >
-                            Sign In
+              {isLoggingIn ? 'Logging in...' : 'Login'}
             </Button>
           </Box>
         </Box>
@@ -103,4 +114,4 @@ function SignIn() {
     </Grid>
   )
 }
-export default SignIn
+export default Login

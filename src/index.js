@@ -5,13 +5,12 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
-import { BrowserRouter } from 'react-router-dom'
 
 const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)
 
 const darktheme = createTheme({
-  direction:'ltr',
+  direction: 'ltr',
   palette: {
     mode: 'dark',
   },
@@ -31,14 +30,11 @@ const darktheme = createTheme({
 
 root.render(
   <React.StrictMode>
-
     <StyledEngineProvider injectFirst>
-      <BrowserRouter>
-        <ThemeProvider theme={darktheme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darktheme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>,
 )
