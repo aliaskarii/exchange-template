@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { useLocation, useNavigation } from 'react-router-dom'
 import { loginAction } from '../../routes'
-
+import group360 from '../../assets/images/Group360.png'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -74,7 +74,7 @@ function Login() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: 'url(../assets/images/Group360.png)',
+          backgroundImage: `url(${group360})`,
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

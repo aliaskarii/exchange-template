@@ -71,8 +71,6 @@ export async function loginAction(props) {
       error: 'Invalid login attempt',
     }
   }
-  
-
   return redirect('/dashboard')
 }
 
