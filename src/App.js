@@ -10,7 +10,7 @@ function App() {
   return (
     <AuthProvider>
       <Switch>
-        <Route path="/" component={() => (<Redirect to='/dashboard' />)} />
+        <Route base="/exchange-dashboard" path="/" component={() => (<Redirect to='/dashboard' />)} />
         <Route path="/dashboard"
           component={
             () => (
