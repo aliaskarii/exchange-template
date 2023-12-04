@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation } from 'wouter'
+import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -10,12 +10,13 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import group360 from '../../assets/images/Group360.png'
-import  useAuth  from '../../hooks/useAuth'
+import useAuth from '../../hooks/useAuth'
+import { useLocation } from 'wouter'
 
 function Login() {
-  const [, setLocation] = useLocation()
+  const navigate = useNavigate()
+  const { state } = useLocation()
   const auth = useAuth()
-
   const [formData, setFormData] = useState({
     phone: '',
     password: '',
@@ -46,10 +47,14 @@ function Login() {
   }
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
     if (validateForm()) {
       await auth.signin(formData.phone)
-      setLocation('/dashboard')
+      navigate('/home', {
+        state: { from: state },
+        replace: true,
+      })
     } else {
       console.log('Login failed')
     }

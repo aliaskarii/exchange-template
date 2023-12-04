@@ -1,18 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Redirect } from 'wouter'
+import React, { useEffect } from 'react'
 import useAuth from './hooks/useAuth'
+import { useNavigate, useLocation, Outlet } from 'react-router-dom'
 
-export function RequireAuth({ children }) {
-  RequireAuth.propTypes = {
-    children: PropTypes.any
-  }
-
+function RequireAuth() {
+  const navigate = useNavigate()
+  const location = useLocation()
   const auth = useAuth()
+  console.log('ddddd')
+  useEffect(() => {
+    if (!auth.user) {
+      navigate('/login', {
+        state: { from: location },
+        replace: true,
+      })
+    }
+  }, [navigate, location])
 
-  if (!auth.user) {
-    return <Redirect to="/login" />
-  }
-
-  return children
+  return <Outlet />
 }
+export default RequireAuth

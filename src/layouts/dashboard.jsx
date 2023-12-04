@@ -18,8 +18,8 @@ import ListItemText from '@mui/material/ListItemText'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import mainListItems from './listItems'
 import Container from '@mui/material/Container'
-import PropTypes from 'prop-types'
 import Copyright from '../components/copyright'
+import { Outlet } from 'react-router-dom'
 
 
 const drawerWidth = 240
@@ -68,10 +68,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 )
 
-export function DashboardLayout({ children }) {
-  DashboardLayout.propTypes = {
-    children: PropTypes.any
-  }
+export function DashboardLayout() {
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
     setOpen(!open)
@@ -133,7 +130,7 @@ export function DashboardLayout({ children }) {
         </List>
       </Drawer>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        {children}
+        <Outlet />
         <Copyright sx={{ pt: 4 }} />
       </Container>
     </Box>
