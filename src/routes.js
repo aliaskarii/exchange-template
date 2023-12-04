@@ -12,11 +12,11 @@ import Login from './pages/auth/login'
 import RequireAuth from './auth'
 import ProfilePage from './pages/dashboard/profile'
 
-export const router = createBrowserRouter(
+export const router = createBrowserRouter([
   createRoutesFromElements(
     <>
       <Route path="/" element={<RequireAuth />}>
-        <Route  element={<DashboardLayout />}>
+        <Route element={<DashboardLayout />}>
           <Route path='/home' element={<Home />} />
           <Route path='/profile' element={<ProfilePage />} />
         </Route>
@@ -24,7 +24,7 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<Error404 />} />
     </>
-  )
+  )], { basename: process.env.PUBLIC_URL }
 )
 
 export const AuthContext = React.createContext()
