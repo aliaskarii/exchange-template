@@ -18,19 +18,8 @@ import ListItemText from '@mui/material/ListItemText'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import mainListItems from './listItems'
 import Container from '@mui/material/Container'
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        Exchange Template With React
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
+import PropTypes from 'prop-types'
+import CopyRight from '../components/copyright'
 
 
 const drawerWidth = 240
@@ -80,6 +69,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 )
 
 export function DashboardLayout({ children }) {
+  DashboardLayout.propTypes = {
+    children: PropTypes.any
+  }
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
     setOpen(!open)
