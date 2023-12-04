@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import group360 from '../../assets/images/Group360.png'
-import { useAuth } from '../../routes'
+import  useAuth  from '../../hooks/useAuth'
 
 function Login() {
   const [, setLocation] = useLocation()

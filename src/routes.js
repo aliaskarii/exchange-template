@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
 
 export default function AuthProvider({ children }) {
   AuthProvider.propTypes = {
@@ -28,8 +28,4 @@ export default function AuthProvider({ children }) {
     [user]
   )
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-}
-
-export function useAuth() {
-  return React.useContext(AuthContext)
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'wouter'
-import { useAuth } from './routes'
+import useAuth from './hooks/useAuth'
 
 export function RequireAuth({ children }) {
   RequireAuth.propTypes = {

@@ -19,7 +19,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard'
 import mainListItems from './listItems'
 import Container from '@mui/material/Container'
 import PropTypes from 'prop-types'
-import CopyRight from '../components/copyright'
+import Copyright from '../components/copyright'
 
 
 const drawerWidth = 240
