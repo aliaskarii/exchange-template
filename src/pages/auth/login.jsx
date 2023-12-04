@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation } from 'wouter'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -8,11 +9,13 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
-import { useLocation, useNavigation } from 'react-router-dom'
-import { loginAction } from '../../routes'
 import group360 from '../../assets/images/Group360.png'
+import { useAuth } from '../../routes'
 
 function Login() {
+  const [, setLocation] = useLocation()
+  const auth = useAuth()
+
   const [formData, setFormData] = useState({
     phone: '',
     password: '',
@@ -42,11 +45,11 @@ function Login() {
     return valid
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateForm()) {
-      loginAction(formData.phone)
-      console.log('Login successful')
+      await auth.signin(formData.phone)
+      setLocation('/dashboard')
     } else {
       console.log('Login failed')
     }
@@ -59,12 +62,6 @@ function Login() {
       [name]: name === 'rememberMe' ? checked : value,
     })
   }
-  let location = useLocation()
-  let params = new URLSearchParams(location.search)
-  let from = params.get('from') || '/'
-
-  let navigation = useNavigation()
-  let isLoggingIn = navigation.formData?.get('phone') != null
 
   return (
     <Grid container component="main" sx={{ height: '100vh' }} direction='row-reverse'>
@@ -104,7 +101,6 @@ function Login() {
             Log in to your account to access all feature
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <input type="hidden" name="redirectTo" value={from} />
             <TextField
               margin="normal"
               required
@@ -149,9 +145,8 @@ function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={isLoggingIn}
             >
-              {isLoggingIn ? 'Logging in...' : 'Login'}
+              Submit
             </Button>
           </Box>
         </Box>

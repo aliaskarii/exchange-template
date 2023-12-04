@@ -1,95 +1,35 @@
-import {
-  createBrowserRouter,
-  redirect,
-} from 'react-router-dom'
-import { fakeAuthProvider } from './auth'
-import DashboardLayout from './layouts/dashboard'
-import AuthLayout from './layouts/auth'
-import Login from './pages/auth/login'
-import Home from './pages/dashboard/home'
-import PublicLayout from './layouts/public'
-import ProfilePage from './pages/dashboard/profile'
+import React from 'react'
+import PropTypes from 'prop-types'
 
+const AuthContext = React.createContext()
 
-
-
-export const router = createBrowserRouter([
-  {
-    id: 'root',
-    path: '/',
-    loader() {
-      return { user: fakeAuthProvider.username }
-    },
-    Component: PublicLayout,
-    children: [
-      {
-        index: true,
-        Component: Home,
-      },
-    ],
-  },
-  {
-    Component: DashboardLayout,
-    children: [
-      {
-        path: 'dashboard',
-        loader: protectedLoader,
-        Component: ProfilePage,
-      },
-    ],
-  },
-  {
-    Component: AuthLayout,
-    children: [
-      {
-        path: 'login',
-        loader: loginLoader,
-        action: loginAction,
-        Component: Login,
-      },
-    ],
-  },
-  {
-    path: '/logout',
-    async action() {
-      await fakeAuthProvider.signout()
-      return redirect('/')
-    },
-  },
-])
-
-
-
-export async function loginAction(props) {
-  let phone = props.phone
-  try {
-    await fakeAuthProvider.signin(phone)
-    console.log('log in fake success')
-  } catch (error) {
-    // handle invalid
-    return {
-      error: 'Invalid login attempt',
-    }
+export default function AuthProvider({ children }) {
+  AuthProvider.propTypes = {
+    children: PropTypes.any
   }
-  return redirect('/dashboard')
+  const [user, setUser] = React.useState(null)
+
+  const signin = async (newUser) => {
+    await Promise.resolve((r) => setTimeout(r, 500))
+    setUser(newUser)
+  }
+
+  const signout = async () => {
+    await Promise.resolve((r) => setTimeout(r, 500))
+    setUser(null)
+  }
+
+  const contextValue = React.useMemo(
+    () => ({
+      user,
+      signin,
+      signout
+    }),
+    [user]
+  )
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 }
 
-
-  
-async function loginLoader() {
-  if (fakeAuthProvider.isAuthenticated) {
-    return redirect('/')
-  }
-  return null
+export function useAuth() {
+  return React.useContext(AuthContext)
 }
-  
-  
-function protectedLoader({ request }) {
-  if (!fakeAuthProvider.isAuthenticated) {
-    let params = new URLSearchParams()
-    params.set('from', new URL(request.url).pathname)
-    return redirect('/login?' + params.toString())
-  }
-  return null
-}
-  

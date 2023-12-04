@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom'
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -25,7 +24,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="#">
-                Exchange Template With React
+        Exchange Template With React
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -80,7 +79,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 )
 
-export function DashboardLayout() {
+export function DashboardLayout({ children }) {
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
     setOpen(!open)
@@ -113,7 +112,7 @@ export function DashboardLayout() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-                        Dashboard
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
@@ -133,7 +132,7 @@ export function DashboardLayout() {
         <Divider />
         <List component="nav">
           {mainListItems}
-          <ListItemButton className="mt-20">
+          <ListItemButton className="mt-20" component={Link} to="/logout">
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -142,7 +141,7 @@ export function DashboardLayout() {
         </List>
       </Drawer>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Outlet/>
+        {children}
         <Copyright sx={{ pt: 4 }} />
       </Container>
     </Box>

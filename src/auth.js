@@ -1,14 +1,18 @@
-export const fakeAuthProvider = {
-  isAuthenticated: false,
-  phone: null,
-  async signin(phone) {
-    await new Promise((r) => setTimeout(r, 500)) // fake delay
-    fakeAuthProvider.isAuthenticated = true
-    fakeAuthProvider.phone = phone
-  },
-  async signout() {
-    await new Promise((r) => setTimeout(r, 500)) // fake delay
-    fakeAuthProvider.isAuthenticated = false
-    fakeAuthProvider.phone = ''
-  },
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Redirect } from 'wouter'
+import { useAuth } from './routes'
+
+export function RequireAuth({ children }) {
+  RequireAuth.propTypes = {
+    children: PropTypes.any
+  }
+
+  const auth = useAuth()
+
+  if (!auth.user) {
+    return <Redirect to="/login" />
+  }
+
+  return children
 }

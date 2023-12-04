@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'wouter'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
@@ -10,49 +11,49 @@ import LayersIcon from '@mui/icons-material/Layers'
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/dashboard">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Dashboard"/>
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/profile">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/currentprice">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Current Price" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/about-us">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="About Us" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/chartists">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Chartists" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/news">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="News" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/chat">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Chat" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/learn">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>

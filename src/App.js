@@ -1,12 +1,30 @@
 import React from 'react'
-import {
-  RouterProvider,
-} from 'react-router-dom'
-import { router } from './routes'
+import { Route, Redirect, Switch } from 'wouter'
+import Login from './pages/auth/login'
+import ProfilePage from './pages/dashboard/profile'
+import { RequireAuth } from './auth'
+import DashboardLayout from './layouts/dashboard'
+import AuthProvider from './routes'
 
-
-export default function App() {
+function App() {
   return (
-    <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+    <AuthProvider>
+      <Switch>
+        <Route path="/" component={() => (<Redirect to='/dashboard' />)} />
+        <Route path="/dashboard"
+          component={
+            () => (
+              <RequireAuth>
+                <DashboardLayout>
+                  <ProfilePage />
+                </DashboardLayout>
+              </RequireAuth>
+            )
+          }
+        />
+        <Route path="/login" component={Login} />
+      </Switch>
+    </AuthProvider>
   )
 }
+export default App
