@@ -12,6 +12,11 @@ const darktheme = createTheme({
   direction: 'ltr',
   palette: {
     mode: 'dark',
+    dark:'#2C353D',
+    background:{
+      default:'#242B31',
+      paper:'#2C353D'
+    }
   },
   components: {
     MuiPopover: {

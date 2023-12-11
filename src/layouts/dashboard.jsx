@@ -9,19 +9,13 @@ import List from '@mui/material/List'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import Link from '@mui/material/Link'
-import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import DashboardIcon from '@mui/icons-material/Dashboard'
 import mainListItems from './listItems'
 import Container from '@mui/material/Container'
 import Copyright from '../components/copyright'
 import { Outlet } from 'react-router-dom'
-
-
+import Drawericon from '../assets/images/Group 1225.png'
+//import logo from '../assets/images/Group -2.png'
 const drawerWidth = 240
 
 const AppBar = styled(MuiAppBar, {
@@ -92,7 +86,7 @@ export function DashboardLayout() {
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon />
+            <img src={Drawericon} alt='Drawericon' />
           </IconButton>
           <Typography
             component="h1"
@@ -121,12 +115,6 @@ export function DashboardLayout() {
         <Divider />
         <List component="nav">
           {mainListItems}
-          <ListItemButton className="mt-20" component={Link} to="/logout">
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItemButton>
         </List>
       </Drawer>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>

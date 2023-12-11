@@ -1,63 +1,73 @@
-import * as React from 'react'
-import { Link } from 'wouter'
+import React from 'react'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import PeopleIcon from '@mui/icons-material/People'
-import BarChartIcon from '@mui/icons-material/BarChart'
-import LayersIcon from '@mui/icons-material/Layers'
+import Link from '@mui/material/Link'
+import homeicon from '../assets/images/home-2.png'
+import usericon from '../assets/images/user.png'
+import coinicon from '../assets/images/coin.png'
+import infocircleicon from '../assets/images/info-circle.png'
+import chartcandleicon from '../assets/images/chart-candle.png'
+import templateicon from '../assets/images/template.png'
+import messageicon from '../assets/images/message-report.png'
+import licenceicon from '../assets/images/license.png'
+import logouticon from '../assets/images/arrow-bar-left.png'
 
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton component={Link} to="/dashboard">
       <ListItemIcon>
-        <DashboardIcon />
+        <img src={homeicon} alt="home" />
       </ListItemIcon>
-      <ListItemText primary="Dashboard"/>
+      <ListItemText primary="Dashboard" />
     </ListItemButton>
     <ListItemButton component={Link} to="/profile">
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <img src={usericon} alt="user" />
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
     <ListItemButton component={Link} to="/currentprice">
       <ListItemIcon>
-        <PeopleIcon />
+        <img src={coinicon} alt="coin" />
       </ListItemIcon>
       <ListItemText primary="Current Price" />
     </ListItemButton>
     <ListItemButton component={Link} to="/about-us">
       <ListItemIcon>
-        <BarChartIcon />
+        <img src={infocircleicon} alt="info" />
       </ListItemIcon>
       <ListItemText primary="About Us" />
     </ListItemButton>
     <ListItemButton component={Link} to="/chartists">
       <ListItemIcon>
-        <LayersIcon />
+        <img src={chartcandleicon} alt="chartists" />
       </ListItemIcon>
       <ListItemText primary="Chartists" />
     </ListItemButton>
     <ListItemButton component={Link} to="/news">
       <ListItemIcon>
-        <LayersIcon />
+        <img src={templateicon} alt="news" />
       </ListItemIcon>
       <ListItemText primary="News" />
     </ListItemButton>
     <ListItemButton component={Link} to="/chat">
       <ListItemIcon>
-        <LayersIcon />
+        <img src={messageicon} alt="chat" />
       </ListItemIcon>
       <ListItemText primary="Chat" />
     </ListItemButton>
     <ListItemButton component={Link} to="/learn">
       <ListItemIcon>
-        <LayersIcon />
+        <img src={licenceicon} alt="learn" />
       </ListItemIcon>
       <ListItemText primary="Learn" />
+    </ListItemButton>
+    <ListItemButton className="mt-20" component={Link} to="/logout">
+      <ListItemIcon>
+        <img src={logouticon} alt="logout" />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItemButton>
   </React.Fragment>
 )
