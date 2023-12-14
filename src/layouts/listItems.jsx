@@ -2,7 +2,7 @@ import React from 'react'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import Link from '@mui/material/Link'
+import { Link } from 'react-router-dom'
 import homeicon from '../assets/images/home-2.png'
 import usericon from '../assets/images/user.png'
 import coinicon from '../assets/images/coin.png'
@@ -15,7 +15,7 @@ import logouticon from '../assets/images/arrow-bar-left.png'
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton component={Link} to="/dashboard">
+    <ListItemButton component={Link} to="/home">
       <ListItemIcon>
         <img src={homeicon} alt="home" />
       </ListItemIcon>
@@ -27,7 +27,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
-    <ListItemButton component={Link} to="/currentprice">
+    <ListItemButton component={Link} to="/current-price">
       <ListItemIcon>
         <img src={coinicon} alt="coin" />
       </ListItemIcon>

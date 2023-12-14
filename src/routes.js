@@ -18,17 +18,17 @@ import News from './pages/dashboard/news'
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<RequireAuth />}>
-        <Route element={<DashboardLayout />}>
-          <Route path='/home' element={<Home />} />
+      <Route path="/" element={<DashboardLayout />}>
+        <Route path='/chat' element={<ProfilePage />} />
+        <Route path='/learn' element={<ProfilePage />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/current-price" element={<CurrentPrice />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path='/home' element={<Home />} />
+        <Route element={<RequireAuth />}>
           <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/chat' element={<ProfilePage />} />
-          <Route path='/learn' element={<ProfilePage />} />
         </Route>
       </Route>
-      <Route path="/news" element={<News />} />
-      <Route path="/current-price" element={<CurrentPrice />} />
-      <Route path="/about-us" element={<AboutUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<Error404 />} />
     </>

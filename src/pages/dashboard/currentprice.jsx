@@ -1,8 +1,13 @@
 import React from 'react'
+import { Grid  } from '@mui/material'
+import Currencies from '../../data/currencies.js'
+
 
 function CurrentPrice() {
   return (
-    <h2 className="p-20">TODO Current Price Content</h2>
+    <Grid sx={{pt:20}}>
+        <Currencies />
+    </Grid>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,useLocation } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -11,7 +11,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import group360 from '../../assets/images/Group360.png'
 import useAuth from '../../hooks/useAuth'
-import { useLocation } from 'wouter'
 
 function Login() {
   const navigate = useNavigate()
@@ -36,6 +35,12 @@ function Login() {
       newErrors.phone = 'phone is required'
       valid = false
     }
+    const phoneRegex = /^(\+98|0)?9\d{9}$/
+    if (!formData.phone || !phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'phone is not valid ex:+989000000000'
+      valid = false
+    }
+
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
     if (!formData.password || !passwordRegex.test(formData.password)) {
       newErrors.password = 'Password must be at least 6 characters with at least one uppercase and one lowercase letter'
@@ -83,6 +88,7 @@ function Login() {
             t.palette.mode === 'light' ? t.palette.background : t.palette.background,
           backgroundSize: '70% auto',
           backgroundPosition: 'center',
+          placeItems:'center',
         }}
       >
         <Box
@@ -97,7 +103,7 @@ function Login() {
             background: 'transparent',
             textAlign: 'center',
             fontSize:'1.5em',
-            paddingTop:'100%'
+            paddingTop:'75%'
           }}>
           Buying and Selling expirience in Lorem ipsum
         </Box>
@@ -105,9 +111,9 @@ function Login() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            pl: 6,
+            pl: 0,
             my: 8,
-            mx: 4,
+            mx: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
@@ -152,12 +158,12 @@ function Login() {
             />
             <Grid container direction="column">
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/forget-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/sign-up" variant="body2">
                   {'Don\'t have an account? Sign Up Here!'}
                 </Link>
               </Grid>
