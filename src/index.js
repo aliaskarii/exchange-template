@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals'
 import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
 import App from './App'
+import { Provider } from 'react-redux'
+import store from './app/store'
 
 const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)
@@ -12,10 +14,10 @@ const darktheme = createTheme({
   direction: 'ltr',
   palette: {
     mode: 'dark',
-    dark:'#2C353D',
-    background:{
-      default:'#242B31',
-      paper:'#2C353D'
+    dark: '#2C353D',
+    background: {
+      default: '#242B31',
+      paper: '#2C353D'
     }
   },
   components: {
@@ -34,12 +36,14 @@ const darktheme = createTheme({
 
 root.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={darktheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <Provider store={store}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={darktheme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </Provider>
   </React.StrictMode>,
 )
 

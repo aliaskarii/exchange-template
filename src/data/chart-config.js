@@ -1,5 +1,3 @@
-
-
 const chartdata = {
     type: 'line',
     height: 100,
