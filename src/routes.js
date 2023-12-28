@@ -14,6 +14,7 @@ import ProfilePage from './pages/dashboard/profile'
 import AboutUs from './pages/dashboard/about-us'
 import CurrentPrice from './pages/dashboard/currentprice'
 import News from './pages/dashboard/news'
+import BuyForm from './pages/dashboard/purchase-mux'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +25,7 @@ export const router = createBrowserRouter(
         <Route path="/news" element={<News />} />
         <Route path="/current-price" element={<CurrentPrice />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<BuyForm />} />
         <Route element={<RequireAuth />}>
           <Route path='/profile' element={<ProfilePage />} />
         </Route>
