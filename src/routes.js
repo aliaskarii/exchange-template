@@ -33,7 +33,9 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<Error404 />} />
     </>
-  )
+  ), {
+    basename: process.env.PUBLIC_URL ?? '/',
+  }
 )
 
 export const AuthContext = React.createContext()
