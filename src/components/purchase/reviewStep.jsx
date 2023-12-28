@@ -1,25 +1,43 @@
-import * as React from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import numberWithCommas from "../../lib/numberWithCommas";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { info, back, next } from '../../slices/purchase/purchaseSlice';
+import { Grid, Button } from "@mui/material";
 
 function formatCardNumber(x) {
   return x.toString().replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "-");
 }
 
 export default function ReviewStep() {
+  const dispatch = useDispatch();
+  const purchase = useSelector((state) => state.purchase.value);
+  const step = useSelector((e) => e.purchase.step);
+
   const {
     symbol,
     spend,
     cardnumber,
     iban,
     lastsymbolprice,
-  } = useSelector((state) => state.purchase.purchaseData);
+  } = useSelector((state) => state.purchase.value);
   const purchaseStatus = useSelector((state) => state.purchase.status);
-
+  function handlenextClick() {
+    console.log(purchase)
+    dispatch(info({ ...purchase, nextClick: true }));
+    if (step == 2) {
+      dispatch(next());
+      dispatch(info({ ...purchase, nextClick: false }))
+    }
+  }
+  function handlebackClick() {
+    console.log(purchase)
+    dispatch(info({ ...purchase, nextClick: false }));
+    dispatch(back())
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -63,6 +81,10 @@ export default function ReviewStep() {
           </Typography>
         </ListItem>
       </List>
+      <Grid item xs={12}>
+        <Button fullWidth onClick={handlebackClick}>back</Button>
+        <Button fullWidth onClick={handlenextClick}>Next</Button>
+      </Grid>
     </React.Fragment>
   );
 }

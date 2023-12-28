@@ -6,7 +6,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import fetchSymbolPrices from "../../lib/fetchSymbolPrices";
 import { symbols } from "../../data/currencielist";
@@ -14,28 +14,35 @@ import Skeleton from "@mui/material/Skeleton";
 import numberWithCommas from "../../lib/numberWithCommas";
 import { useDispatch, useSelector } from "react-redux";
 import { Refresh } from "@mui/icons-material";
-import { info } from "../../slices/purchase/purchaseSlice";
+import { info, next } from "../../slices/purchase/purchaseSlice";
 
 function SymbolStep() {
   const dispatch = useDispatch();
-  const purchase = useSelector((state) => state.purchase);
+  const purchase = useSelector((state) => state.purchase.value);
+  const step = useSelector((e) => e.purchase.step);
 
   const [symbolsData, setSymbolsData] = useState([]);
   const [symbol, setSymbol] = useState(0);
   const [spend, setSpend] = useState(0);
   const [received, setReceived] = useState(0);
   const [loading, setLoading] = useState(true);
-
-
+  function handlenextClick() {
+    console.log(purchase)
+    dispatch(info({ ...purchase, nextClick: true }));
+    if (step == 0) {
+      dispatch(next());
+      dispatch(info({ ...purchase, nextClick: false }))
+    }
+  }
   useEffect(() => {
     setLoading(true);
     Promise.all(symbols.map((name) => fetchSymbolPrices(name)))
-      .then((res) => {
-        setSymbolsData(res);
-        setLoading(false);
-      })
       .catch((error) => {
         console.error("Error fetching symbol prices:", error);
+        setLoading(false);
+      })
+      .then((res) => {
+        setSymbolsData(res);
         setLoading(false);
       });
   }, []);
@@ -53,7 +60,7 @@ function SymbolStep() {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid spacing={2}>
       <Grid item xs={12}>
         <FormControl fullWidth size="small">
           <InputLabel id="demo-select-small-label">Symbol</InputLabel>
@@ -131,12 +138,15 @@ function SymbolStep() {
           value={received}
           onChange={(e) => {
             setReceived(e.currentTarget.value);
-            setSpend(e.currentTarget.value * symbolsData[symbol].price[49] * 500000);
+            setSpend(
+              e.currentTarget.value * symbolsData[symbol].price[49] * 500000
+            );
           }}
           error={received === 0 && purchase.nextClick}
           helperText={received === 0 ? "Empty Field!" : " "}
         />
       </Grid>
+      <Button onClick={handlenextClick}>Next</Button>
     </Grid>
   );
 }
