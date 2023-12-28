@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  createHashRouter,
   Route,
 } from 'react-router-dom'
 import Home from './pages/dashboard/home'
@@ -17,7 +16,7 @@ import CurrentPrice from './pages/dashboard/currentprice'
 import News from './pages/dashboard/news'
 import BuyForm from './pages/dashboard/purchase-mux'
 
-export const router = createHashRouter(
+export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<DashboardLayout />}>
