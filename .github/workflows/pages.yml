@@ -23,10 +23,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm ci
-      - run: npm run build
-         env:
-             PUBLIC_URL: /exchange-template/
+      - name: Build
+        run: npm ci && npm run build
+        env:
+            PUBLIC_URL: /exchange-template/
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
