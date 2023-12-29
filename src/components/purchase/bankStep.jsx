@@ -11,18 +11,40 @@ export default function BankStep() {
   const purchase = useSelector((state) => state.purchase.value);
   const step = useSelector((e) => e.purchase.step);
 
-  const [cardnumber, setCardNumber] = useState()
-  const [iban, setIban] = useState()
+  const [cardnumber, setCardNumber] = useState('')
+  const [iban, setIban] = useState('')
+
+  function validateCardNumber() {
+    var re16digit = /^\d{16}$/
+    if (cardnumber.search(re16digit) == 1 && cardnumber != '') {
+      return false
+    }
+    return true
+  }
+  function validateIbanNumber() {
+    var re16digit = /^\d{26}$/
+    if (iban.search(re16digit) == 1 && cardnumber != '') {
+      return false
+    }
+    return true
+  }
+
   function handlenextClick() {
-    console.log(purchase)
     dispatch(info({ ...purchase, nextClick: true }));
-    if (step == 1) {
+    if (
+      step == 1 && purchase.nextClick
+    ) {
       dispatch(next());
-      dispatch(info({ ...purchase, nextClick: false }))
+      dispatch(info({
+        ...purchase,
+        nextClick: false,
+        iban: iban,
+        cardnumber: cardnumber
+
+      }))
     }
   }
   function handlebackClick() {
-    console.log(purchase)
     dispatch(info({ ...purchase, nextClick: false }));
     dispatch(back())
   }
@@ -43,6 +65,8 @@ export default function BankStep() {
             onChange={(e) => {
               setCardNumber(e.currentTarget.value)
             }}
+            error={validateCardNumber && purchase.nextClick}
+            helperText={validateCardNumber && purchase.nextClick ? "Empty Field!" : " "}
           />
         </Grid>
         <Grid item xs={12}>
@@ -58,6 +82,8 @@ export default function BankStep() {
             onChange={(e) => {
               setIban(e.currentTarget.value)
             }}
+            error={validateIbanNumber && purchase.nextClick}
+            helperText={validateIbanNumber && purchase.nextClick ? "Empty Field!" : ""}
           />
         </Grid>
         <Grid item xs={12}>

@@ -26,12 +26,22 @@ function SymbolStep() {
   const [spend, setSpend] = useState(0);
   const [received, setReceived] = useState(0);
   const [loading, setLoading] = useState(true);
+
   function handlenextClick() {
-    console.log(purchase)
     dispatch(info({ ...purchase, nextClick: true }));
-    if (step == 0) {
+    if (
+      step == 0 &&
+      spend > 0 &&
+      received > 0
+    ) {
       dispatch(next());
-      dispatch(info({ ...purchase, nextClick: false }))
+      dispatch(info({
+        ...purchase,
+        nextClick: false,
+        symbol: symbolsData[symbol].name,
+        spend: spend,
+        price: symbolsData[symbol].price[49]
+      }))
     }
   }
   useEffect(() => {
@@ -146,7 +156,7 @@ function SymbolStep() {
           helperText={received === 0 ? "Empty Field!" : " "}
         />
       </Grid>
-      <Button onClick={handlenextClick}>Next</Button>
+      <Button fullWidth onClick={handlenextClick}>Next</Button>
     </Grid>
   );
 }

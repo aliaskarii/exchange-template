@@ -1,23 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
+const initialState = {
+    step: 0,
+    value: {
+        cardnumberValid: false,
+        nextClick: false,
+        orderId: 12313123,
+        status: 'idle',
+        symbol: '',
+        price: 0,
+        spend: 0,
+        cardnumber: '',
+        iban: '',
+    },
+}
+
 export const purchaseSlice = createSlice({
     name: 'purchase',
-    initialState: {
-        step: 0,
-        value: {
-            cardnumberValid: false,
-            nextPermation: false,
-            nextClick: false,
-            orderId: 12313123,
-            status: '',
-            symbol: '',
-            price: 0,
-            spend: 0,
-            cardnumber: '',
-            iban: '',
-        },
-    },
+    initialState: Object.assign({}, {...initialState}),
     reducers: {
         next: (state) => {
             state.step = state.step + 1;
@@ -27,10 +28,13 @@ export const purchaseSlice = createSlice({
         },
         info: (state, action) => {
             state.value = action.payload
+        },
+        reset() {
+            return Object.assign({}, {...initialState})
         }
     }
 })
 
-export const { info, back, next } = purchaseSlice.actions
+export const { info, back, next,reset } = purchaseSlice.actions
 
 export default purchaseSlice.reducer
