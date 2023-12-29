@@ -6,7 +6,8 @@ import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/
 import { CssBaseline } from '@mui/material'
 import App from './App'
 import { Provider } from 'react-redux'
-import store from './app/store'
+import { PersistGate } from 'redux-persist/integration/react'
+import {persistor, store} from './app/store'
 
 const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)
@@ -37,12 +38,14 @@ const darktheme = createTheme({
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={darktheme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </StyledEngineProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={darktheme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
 )
