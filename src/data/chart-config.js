@@ -1,5 +1,5 @@
 const chartdata = {
-  type: "line",
+  type: 'line',
   height: 100,
   width: 250,
   options: {
@@ -29,14 +29,14 @@ const chartdata = {
       opacity: 0.5,
     },
     tooltip: {
-      theme: "dark",
+      theme: 'dark',
     },
     dataLabels: {
       enabled: false,
     },
-    colors: ["#5FBC69"],
+    colors: ['#5FBC69'],
     stroke: {
-      lineCap: "round",
+      lineCap: 'round',
     },
     markers: {
       show: false,
@@ -52,8 +52,8 @@ const chartdata = {
       labels: {
         show: false,
       },
-      name: "chart",
+      name: 'chart',
     },
   },
-};
-export default chartdata;
+}
+export default chartdata

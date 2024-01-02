@@ -1,20 +1,20 @@
-import React from "react";
-import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import numberWithCommas from "../../lib/numberWithCommas";
-import { useDispatch, useSelector } from "react-redux";
-import { back, next  } from '../../slices/purchase/purchaseSlice';
-import { Grid, Button } from "@mui/material";
+import React from 'react'
+import Typography from '@mui/material/Typography'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import numberWithCommas from '../../lib/numberWithCommas'
+import { useDispatch, useSelector } from 'react-redux'
+import { back, next  } from '../../slices/purchase/purchaseSlice'
+import { Grid, Button } from '@mui/material'
 
 function formatCardNumber(x) {
-  return x.toString().replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "-");
+  return x.toString().replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, '-')
 }
 
 export default function ReviewStep() {
-  const dispatch = useDispatch();
-  const step = useSelector((e) => e.purchase.step);
+  const dispatch = useDispatch()
+  const step = useSelector((e) => e.purchase.step)
 
   const {
     symbol,
@@ -22,8 +22,8 @@ export default function ReviewStep() {
     cardnumber,
     iban,
     lastsymbolprice,
-  } = useSelector((state) => state.purchase.value);
-  const purchaseStatus = useSelector((state) => state.purchase.status);
+  } = useSelector((state) => state.purchase.value)
+  const purchaseStatus = useSelector((state) => state.purchase.status)
   function handlenextClick() {
     if (step == 2) {
       dispatch(next())
@@ -80,5 +80,5 @@ export default function ReviewStep() {
         <Button fullWidth onClick={handlenextClick}>Next</Button>
       </Grid>
     </React.Fragment>
-  );
+  )
 }

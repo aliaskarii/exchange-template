@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import { Button, InputAdornment } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { info, back, next } from '../../slices/purchase/purchaseSlice';
+import React, { useState } from 'react'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
+import { Button, InputAdornment } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { info, back, next } from '../../slices/purchase/purchaseSlice'
 
 export default function BankStep() {
-  const dispatch = useDispatch();
-  const purchase = useSelector((state) => state.purchase.value);
-  const step = useSelector((e) => e.purchase.step);
+  const dispatch = useDispatch()
+  const purchase = useSelector((state) => state.purchase.value)
+  const step = useSelector((e) => e.purchase.step)
 
   const [cardnumber, setCardNumber] = useState('')
   const [iban, setIban] = useState('')
@@ -30,11 +30,11 @@ export default function BankStep() {
   }
 
   function handlenextClick() {
-    dispatch(info({ ...purchase, nextClick: true }));
+    dispatch(info({ ...purchase, nextClick: true }))
     if (
       step == 1 && purchase.nextClick
     ) {
-      dispatch(next());
+      dispatch(next())
       dispatch(info({
         ...purchase,
         nextClick: false,
@@ -45,7 +45,7 @@ export default function BankStep() {
     }
   }
   function handlebackClick() {
-    dispatch(info({ ...purchase, nextClick: false }));
+    dispatch(info({ ...purchase, nextClick: false }))
     dispatch(back())
   }
   return (
@@ -66,7 +66,7 @@ export default function BankStep() {
               setCardNumber(e.currentTarget.value)
             }}
             error={validateCardNumber && purchase.nextClick}
-            helperText={validateCardNumber && purchase.nextClick ? "Empty Field!" : " "}
+            helperText={validateCardNumber && purchase.nextClick ? 'Empty Field!' : ' '}
           />
         </Grid>
         <Grid item xs={12}>
@@ -83,7 +83,7 @@ export default function BankStep() {
               setIban(e.currentTarget.value)
             }}
             error={validateIbanNumber && purchase.nextClick}
-            helperText={validateIbanNumber && purchase.nextClick ? "Empty Field!" : ""}
+            helperText={validateIbanNumber && purchase.nextClick ? 'Empty Field!' : ''}
           />
         </Grid>
         <Grid item xs={12}>
@@ -92,5 +92,5 @@ export default function BankStep() {
         </Grid>
       </Grid>
     </React.Fragment>
-  );
+  )
 }

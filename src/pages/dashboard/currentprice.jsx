@@ -1,40 +1,40 @@
 import { Grid  } from '@mui/material'
-import React, { useState, useEffect } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { Paper, Pagination, Stack } from "@mui/material";
-import Chart from "react-apexcharts";
-import Skeleton from "@mui/material/Skeleton";
-import chartdata from "../../data/chart-config";
-import { symbols } from "../../data/currencielist"
+import React, { useState, useEffect } from 'react'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import { Paper, Pagination, Stack } from '@mui/material'
+import Chart from 'react-apexcharts'
+import Skeleton from '@mui/material/Skeleton'
+import chartdata from '../../data/chart-config'
+import { symbols } from '../../data/currencielist'
 import fetchSymbolPrices from '../../lib/fetchSymbolPrices'
 import numberWithCommas from '../../lib/numberWithCommas'
 
 
 function CurrentPrice() {
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [symbolprice, setSymbolPrice] = useState([]);
-  const rowsPerPage = 5;
+  const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [symbolprice, setSymbolPrice] = useState([])
+  const rowsPerPage = 5
 
   const handleChangePage = (_, newPage) => {
-    setPage(newPage);
-  };
+    setPage(newPage)
+  }
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
     Promise.all(
       symbols
         .slice((page - 1) * rowsPerPage, page * rowsPerPage)
         .map((name) => fetchSymbolPrices(name))
     ).then((res) => {
-      setSymbolPrice(res);
-      setLoading(false);
-    });
-  }, [page]);
+      setSymbolPrice(res)
+      setLoading(false)
+    })
+  }, [page])
 
   if (loading) {
     return (
@@ -50,12 +50,12 @@ function CurrentPrice() {
           variant="rectangular"
         />
       </>
-    );
+    )
   }
 
   return (
     <Grid sx={{pt:20}}>
-         <Paper>
+      <Paper>
         <Table sx={{ mb: 3 }}>
           <TableHead>
             <TableRow>
@@ -89,7 +89,7 @@ function CurrentPrice() {
             ))}
           </TableBody>
         </Table>
-        <Stack spacing={2} alignItems={"center"} padding={2}>
+        <Stack spacing={2} alignItems={'center'} padding={2}>
           <Pagination
             count={Math.ceil(symbols.length / rowsPerPage)}
             variant="outlined"
