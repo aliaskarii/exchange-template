@@ -11,7 +11,7 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -23,6 +23,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Lint
+        uses: ls-lint/action@v2.2.2
       - name: Build
         run: npm ci && npm run build
         env:
