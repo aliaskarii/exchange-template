@@ -7,7 +7,7 @@ import { CssBaseline } from '@mui/material'
 import App from './App'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import {persistor, store} from './app/store'
+import {persistor, store} from './app/Store'
 
 const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)

@@ -1,0 +1,12 @@
+ls:
+    .js: PascalCase
+
+ignore: 
+    - .git 
+    - node_modules
+    - .eslintrc.js
+    - build
+    - postcss.config.js
+    - tailwind.config.js
+    - src/index.js
+    - src/reportWebVitals.js
