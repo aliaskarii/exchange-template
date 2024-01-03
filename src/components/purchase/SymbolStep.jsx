@@ -7,13 +7,13 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { Button, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import { InputAdornment } from '@mui/material'
-import fetchSymbolPrices from '../../lib/fetchSymbolPrices'
-import { symbols } from '../../data/currencielist'
+import FetchSymbolPrices from '../../lib/FetchSymbolPrices'
+import { SymbolsList } from '../../data/SymbolsList'
 import Skeleton from '@mui/material/Skeleton'
-import numberWithCommas from '../../lib/numberWithCommas'
+import NumberWithCommas from '../../lib/NumberWithCommas'
 import { useDispatch, useSelector } from 'react-redux'
 import { Cloud } from '@mui/icons-material'
-import { info, next } from '../../slices/purchase/purchaseSlice'
+import { info, next } from '../../slices/purchase/PurchaseSlice'
 
 function SymbolStep() {
   const dispatch = useDispatch()
@@ -45,7 +45,7 @@ function SymbolStep() {
   }
   useEffect(() => {
     setLoading(true)
-    Promise.all(symbols.map((name) => fetchSymbolPrices(name)))
+    Promise.all(SymbolsList.map((name) => FetchSymbolPrices(name)))
       .catch((error) => {
         console.error('Error fetching symbol prices:', error)
         setLoading(false)
@@ -88,7 +88,7 @@ function SymbolStep() {
                 </ListItemIcon>
                 <ListItemText>{symbolData.name}</ListItemText>
                 <Typography variant="body2" color="text.secondary">
-                  {numberWithCommas(symbolData.price[49])}
+                  {NumberWithCommas(symbolData.price[49])}
                 </Typography>
               </MenuItem>
             ))}
@@ -98,7 +98,7 @@ function SymbolStep() {
       <hr />
       <Grid item xs={12} sm={6} >
         <Typography variant="overline" display="block" gutterBottom>
-          {numberWithCommas(symbolsData[symbol].price[49] * 500000)} Rial
+          {NumberWithCommas(symbolsData[symbol].price[49] * 500000)} Rial
         </Typography>
       </Grid>
 
@@ -161,5 +161,4 @@ function SymbolStep() {
     </Grid >
   )
 }
-
 export default SymbolStep

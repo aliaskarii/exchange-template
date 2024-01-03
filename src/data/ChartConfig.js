@@ -1,4 +1,4 @@
-const chartdata = {
+const ChartData = {
   type: 'line',
   height: 100,
   width: 250,
@@ -56,4 +56,4 @@ const chartdata = {
     },
   },
 }
-export default chartdata
+export default ChartData

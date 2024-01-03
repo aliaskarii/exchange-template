@@ -4,11 +4,11 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import { useSelector } from 'react-redux'
 import SymbolStep from '../../components/purchase/SymbolStep'
-import BankStep from '../../components/purchase/bankStep'
-import ReviewStep from '../../components/purchase/reviewStep'
-import ThankyouStep from '../../components/purchase/thankyouStep'
+import BankStep from '../../components/purchase/BankStep'
+import ReviewStep from '../../components/purchase/ReviewStep'
+import ThankyouStep from '../../components/purchase/ThankyouStep'
 
-export default function BuyForm() {
+function PurchaseMux() {
   const step = useSelector((state) => state.purchase.step)
 
   const stepDisplay = () => {
@@ -36,3 +36,4 @@ export default function BuyForm() {
     </React.Fragment>
   )
 }
+export default PurchaseMux

@@ -6,14 +6,14 @@ import {
   Route,
 } from 'react-router-dom'
 import Error404 from './pages/404'
-import DashboardLayout from './layouts/dashboard'
-import Login from './pages/auth/login'
-import RequireAuth from './auth'
-import ProfilePage from './pages/dashboard/profile'
-import AboutUs from './pages/dashboard/about-us'
-import CurrentPrice from './pages/dashboard/currentprice'
-import News from './pages/dashboard/news'
-import BuyForm from './pages/dashboard/purchase-mux'
+import DashboardLayout from './layouts/DashboardLayout'
+import Login from './pages/auth/Login'
+import RequireAuth from './RequireAuth'
+import ProfilePage from './pages/dashboard/ProfilePage'
+import AboutUs from './pages/dashboard/AboutUs'
+import CurrentPrice from './pages/dashboard/CurrentPrice'
+import News from './pages/dashboard/News'
+import PurchaseMux from './pages/dashboard/PurchaseMux'
 
 export const router = createHashRouter(
   createRoutesFromElements(
@@ -24,7 +24,7 @@ export const router = createHashRouter(
         <Route path="/news" element={<News />} />
         <Route path="/current-price" element={<CurrentPrice />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path='/home' element={<BuyForm />} />
+        <Route path='/home' element={<PurchaseMux />} />
         <Route element={<RequireAuth />}>
           <Route path='/profile' element={<ProfilePage />} />
         </Route>

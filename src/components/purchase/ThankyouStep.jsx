@@ -1,11 +1,10 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import { useDispatch } from 'react-redux'
-import { reset } from '../../slices/purchase/purchaseSlice'
+import { reset } from '../../slices/purchase/PurchaseSlice'
 import { Button } from '@mui/material'
 
-
-export default function ThankyouStep() {
+function ThankyouStep() {
   const dispatch = useDispatch()
   function handleClick() {
     dispatch(reset())
@@ -21,3 +20,4 @@ export default function ThankyouStep() {
     </React.Fragment >
   )
 }
+export default ThankyouStep

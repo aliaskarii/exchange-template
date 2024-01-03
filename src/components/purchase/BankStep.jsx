@@ -4,9 +4,9 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import { Button, InputAdornment } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { info, back, next } from '../../slices/purchase/purchaseSlice'
+import { info, back, next } from '../../slices/purchase/PurchaseSlice'
 
-export default function BankStep() {
+function BankStep() {
   const dispatch = useDispatch()
   const purchase = useSelector((state) => state.purchase.value)
   const step = useSelector((e) => e.purchase.step)
@@ -94,3 +94,4 @@ export default function BankStep() {
     </React.Fragment>
   )
 }
+export default BankStep

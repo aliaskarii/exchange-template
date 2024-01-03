@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import purchaseSlice from '../slices/purchase/purchaseSlice'
+import { PurchaseSlice } from '../slices/purchase/PurchaseSlice'
 
 
 const rootReducer = combineReducers({
-  purchase: purchaseSlice,
+  Purchase: PurchaseSlice,
 })
 
 export default rootReducer

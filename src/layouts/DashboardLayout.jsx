@@ -10,9 +10,9 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import mainListItems from './listItems'
+import MainListItems from './MainListItems'
 import Container from '@mui/material/Container'
-import Copyright from '../components/copyright'
+import Copyright from '../components/Copyright'
 import { Outlet } from 'react-router-dom'
 import Drawericon from '../assets/images/Group 1225.png'
 //import logo from '../assets/images/Group -2.png'
@@ -62,7 +62,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 )
 
-export function DashboardLayout() {
+function DashboardLayout() {
   const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
     setOpen(!open)
@@ -114,7 +114,7 @@ export function DashboardLayout() {
         </Toolbar>
         <Divider />
         <List component="nav">
-          {mainListItems}
+          {MainListItems}
         </List>
       </Drawer>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>

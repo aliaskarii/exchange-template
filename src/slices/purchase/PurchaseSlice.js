@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-
 const initialState = {
   step: 0,
   value: {
@@ -16,7 +15,7 @@ const initialState = {
   },
 }
 
-export const purchaseSlice = createSlice({
+export const PurchaseSlice = createSlice({
   name: 'purchase',
   initialState: Object.assign({}, {...initialState}),
   reducers: {
@@ -35,6 +34,6 @@ export const purchaseSlice = createSlice({
   }
 })
 
-export const { info, back, next,reset } = purchaseSlice.actions
+export const { info, back, next,reset } = PurchaseSlice.actions
 
-export default purchaseSlice.reducer
+export default PurchaseSlice.reducer

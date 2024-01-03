@@ -1,4 +1,4 @@
-export const symbols = [
+export const SymbolsList = [
   'BTCUSDT',
   'BNBUSDT',
   'LTCUSDT',

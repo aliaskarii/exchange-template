@@ -3,16 +3,15 @@ import Typography from '@mui/material/Typography'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import numberWithCommas from '../../lib/numberWithCommas'
+import NumberWithCommas from '../../lib/NumberWithCommas'
 import { useDispatch, useSelector } from 'react-redux'
-import { back, next  } from '../../slices/purchase/purchaseSlice'
+import { back, next  } from '../../slices/purchase/PurchaseSlice'
 import { Grid, Button } from '@mui/material'
 
 function formatCardNumber(x) {
   return x.toString().replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, '-')
 }
-
-export default function ReviewStep() {
+function ReviewStep() {
   const dispatch = useDispatch()
   const step = useSelector((e) => e.purchase.step)
 
@@ -53,7 +52,7 @@ export default function ReviewStep() {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total Spend" />
           <Typography variant="body1" sx={{ fontWeight: 700 }}>
-            {numberWithCommas(spend)} Rial
+            {NumberWithCommas(spend)} Rial
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
@@ -82,3 +81,5 @@ export default function ReviewStep() {
     </React.Fragment>
   )
 }
+export default ReviewStep
+

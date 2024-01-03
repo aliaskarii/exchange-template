@@ -13,7 +13,7 @@ import messageicon from '../assets/images/message-report.png'
 import licenceicon from '../assets/images/license.png'
 import logouticon from '../assets/images/arrow-bar-left.png'
 
-export const mainListItems = (
+export const MainListItems = (
   <React.Fragment>
     <ListItemButton component={Link} to="/home">
       <ListItemIcon>
@@ -71,4 +71,4 @@ export const mainListItems = (
     </ListItemButton>
   </React.Fragment>
 )
-export default mainListItems
+export default MainListItems
