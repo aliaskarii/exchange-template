@@ -17,6 +17,7 @@ This project serves as a demonstration of my skills in React, Redux, and Materia
 - **Dashboard Overview:** An overview of exchange-related data.
 - **Redux State Management:** State is managed using Redux for a predictable and centralized store.
 - **Material-UI Components:** Utilizes Material-UI components for a sleek and responsive design.
+- **React Router:** Declarative routing for React.js applications.
 
 ## Getting Started
 

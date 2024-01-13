@@ -13,10 +13,12 @@ This project serves as a demonstration of my skills in React, Redux, and Materia
 - **Dashboard Overview:** An overview of exchange-related data.
 - **Redux State Management:** State is managed using Redux for a predictable and centralized store.
 - **Material-UI Components:** Utilizes Material-UI components for a sleek and responsive design.
-
+- **React Router:** Declarative routing for React.js applications.
 
 ### Usage
-Link To React Repositori
+Link To React Rxchange Project Repository
+- [React Project](https://github.com/aliaskarii/exchange-template)
+
 ### Technologies Used
 
     React: A JavaScript library for building user interfaces.
